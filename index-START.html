@@ -61,6 +61,34 @@
 
   <script>
     //  Your code goes here
+    let button;
+    let audio;
+    
+    function onKeyDown(e) {
+
+      console.log(e.keyCode);
+
+      button = document.querySelector(`div[data-key='${e.keyCode}']`);
+
+      audio = document.querySelector(`audio[data-key='${e.keyCode}']`);
+
+      if (button) {
+        button.classList.add('playing');
+        audio.play()
+      }
+
+      console.log("i have pushed a button" , button, audio)
+    }
+
+    function onKeyUp() {
+      if (button) {
+        button.classList.remove('playing');
+        audio.currentTime = 0;
+        audio.pause();
+      }
+    }
+    window.addEventListener('keydown' , onKeyDown);
+    window.addEventListener('keyup' , onKeyUp);
   </script>
 
 
